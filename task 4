@@ -1,0 +1,23 @@
+Task 5 : URL Shortener
+Problem Statement:
+Build a URL shortening service that takes long URLs and generates shorter, more user-friendly
+links. The service should also track the mappings between short and long URLs for redirection
+purposes
+
+import requests
+
+def shorten_url(url):
+    api_url = "http://tinyurl.com/api-create.php"
+    params = {'url': url}
+    response = requests.get(api_url, params=params)
+    if response.status_code == 200:
+        return response.text
+    else:
+        return None
+
+long_url = input("Enter the URL :\t")
+short_url = shorten_url(long_url)
+if short_url:
+    print(f"Shortened URL: {short_url}")
+else:
+    print("Error shortening the URL")
